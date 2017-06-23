@@ -1,2 +1,2 @@
 # ipv6tools
-My set of IPv6 tools
+My set of dumb IPv6 tools
