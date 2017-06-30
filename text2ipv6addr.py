@@ -8,14 +8,14 @@ ipv6_hmap = {
 '!': '1',
 'O': '0',
 'S': '5',
+'s': '5',
 'I': '1',
 'i': '1',
-'s': '5',
-'E': '3',
 'l': '1',
-'e': '3',
 'k': 'c',
-'K': 'C'
+'K': 'C',
+'R': '7',
+'r': '7'
 }
 
 ipv6_chars = (
@@ -54,5 +54,4 @@ if __name__ == '__main__':
    logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.ERROR)
    text = input("Enter text here: ")
    for address in text2ipv6addr(text):
-      print(str(address))
-
+      print(address.exploded)
