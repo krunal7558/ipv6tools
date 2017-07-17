@@ -32,33 +32,38 @@ ipv6_chars = (
 )
 
 def text2ipv6addr(text):
-   logging.debug('Calling text2ipv6addr()')
-   ipv6_list = []
-   ipv6_oct = []
-   final_list = []
-   for char in list(text):
-      if len(ipv6_list) >= 8:
-         logging.debug(':'.join(ipv6_list))
-         final_list.append(ipaddress.ip_address(':'.join(ipv6_list)))
-         ipv6_list = []
-      if len(ipv6_oct) >= 4:
-         ipv6_list.append(''.join(ipv6_oct))
-         ipv6_oct = []
-      if char in ipv6_hmap:
-         ipv6_oct.append(ipv6_hmap[char])
-      elif char in ipv6_chars:
-         ipv6_oct.append(char)
-      else:
-         #discard that char
-         pass
-   if len(ipv6_list) < 8:
-      logging.debug(':'.join(ipv6_list))
-      ipv6_list.append(':')
-      final_list.append(ipaddress.ip_address(':'.join(ipv6_list)))
-   return final_list
+    '''
+    This function takes a text string as input and map each charactor based on ipv6_hmap dictionary  
+    This function returns a list of IPv6Adress objects which can be interate over to print a
+    address per line or pipe to another IPv6 command sets
+    '''
+    logging.debug('Calling text2ipv6addr()')
+    ipv6_list = []
+    ipv6_oct = []
+    final_list = []
+    for char in list(text):
+        if len(ipv6_list) >= 8:
+            logging.debug(':'.join(ipv6_list))
+            final_list.append(ipaddress.ip_address(':'.join(ipv6_list)))
+            ipv6_list = []
+        if len(ipv6_oct) >= 4:
+            ipv6_list.append(''.join(ipv6_oct))
+            ipv6_oct = []
+        if char in ipv6_hmap:
+            ipv6_oct.append(ipv6_hmap[char])
+        elif char in ipv6_chars:
+            ipv6_oct.append(char)
+        else:
+            #discard that char
+            pass
+    if len(ipv6_list) < 8:
+        logging.debug(':'.join(ipv6_list))
+        ipv6_list.append(':')
+        final_list.append(ipaddress.ip_address(':'.join(ipv6_list)))
+    return final_list
 
 if __name__ == '__main__':
-   logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.ERROR)
-   text = input("Enter text here: ")
-   for address in text2ipv6addr(text):
-      print(address.exploded)
+    logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.ERROR)
+    text = input("Enter text here: ")
+    for address in text2ipv6addr(text):
+        print(address.exploded)
