@@ -18,3 +18,13 @@ DATA
 FILE
     /home/pi/ipv6tools/text2ipv6addr.py
 
+scan_coloncolon1.py : IPv6 address scanner for ::1 addresses out of /40 or /48 prefixed specified in file. 
+
+usage: scan_coloncolon1.py [-h] [--I I] [--O O]
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --I I       File with list of prefixes to scan one per line (default: None)
+  --O O       Output file with list of ::1 IP that responds to ping (default:
+              None)
+
