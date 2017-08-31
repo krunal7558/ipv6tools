@@ -8,7 +8,7 @@ from scapy.all import *
 def main():
     logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.ERROR)
     # Parse and validate arguments and print usage information
-    parser = argparse.ArgumentParser(prog = 'crawler.py' , formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser(prog = 'scan_coloncolon1.py' , formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--I' , type = str , help = 'File with list of prefixes to scan one per line')
     parser.add_argument('--O', type = str , help = 'Output file with list of ::1 IP that responds to ping')
     args = vars(parser.parse_args())    
