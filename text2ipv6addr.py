@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 import logging
 import ipaddress
 
@@ -56,7 +57,7 @@ def text2ipv6addr(text):
         else:
             #discard that char
             pass
-    if len(ipv6_list) < 8:
+    if (len(ipv6_list) < 8 and len(ipv6_list) > 0):
         logging.debug(':'.join(ipv6_list))
         ipv6_list.append(':')
         final_list.append(ipaddress.ip_address(':'.join(ipv6_list)))
