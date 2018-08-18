@@ -1,8 +1,10 @@
-##################################################
+#!/usr/bin/python
+
+###########################################################
 # Ths program takes an IPv6 address as input and
 # returns a list of 8 HEX numbers.  
 # Zero compression and zero suppression is not implemented.
-##################################################
+###########################################################
 
 import pprint
 ipv6_addr = input("Enter IPv6 address : " )

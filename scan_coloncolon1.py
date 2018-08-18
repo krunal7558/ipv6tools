@@ -2,7 +2,6 @@
 
 from netaddr import *
 import argparse
-from getpass import getpass
 from scapy.all import *
 
 def main():
@@ -11,7 +10,7 @@ def main():
     parser = argparse.ArgumentParser(prog = 'scan_coloncolon1.py' , formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--I' , type = str , help = 'File with list of prefixes to scan one per line')
     parser.add_argument('--O', type = str , help = 'Output file with list of ::1 IP that responds to ping')
-    args = vars(parser.parse_args())    
+    args = vars(parser.parse_args())
     with open(args['I']) as fh:    # open file with list of /40 prefixes per line
         for line in fh:
             logging.debug("Scanning " + line.strip() + " block.")
@@ -23,12 +22,12 @@ def main():
                     wfh = open(args['O'],'a')   # open file in append mode
                     for each64 in net64:  # iterate over each /64 prefixes
                         # select first ::1 IP and ping it with timeout to half a second
-                        logging.debug("sending ping to " + str(each64[1])) 
+                        logging.debug("sending ping to " + str(each64[1]))
                         ans = sr1(IPv6(dst=str(each64[1]))/ICMPv6EchoRequest(),timeout=0.5)
                         if ans and ans[IPv6].src == str(each64[1]):   # Ensure reply comes from same source to filter ICMP destination unreachable messages
                            logging.debug("Received reply from " + ans[IPv6].src)
                            wfh.write('\n'+str(each64[1]))    # Write source IP of the packet
-                    wfh.close()   # close the file handle at the end of scanning /56 block 
+                    wfh.close()   # close the file handle at the end of scanning /56 block
 
 if __name__ == "__main__":
     main()

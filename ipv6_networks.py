@@ -8,8 +8,6 @@ LLA_PREFIX = ipaddress.ip_network('fe80::/10')
 MULTICAST_PREFIX = ipaddress.ip_network('ff::/8')
 DOC_PREFIX = ipaddress.ip_network('2001:db8::/32')
 
-
-
 def main():
     pass
 
